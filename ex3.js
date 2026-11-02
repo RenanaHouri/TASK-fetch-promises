@@ -13,7 +13,12 @@
  * @returns {Promise} resolves after the result was printed (so whoever calls the function can wait for it)
  */
 function getUserEmail(userId) {
-  // write your code here
+  return fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+  .then(res=>res.json())
+  .then(user=>{
+    console.log(`User's email: ${user.email}`)
+  })
 }
 
+getUserEmail(1)
 module.exports = { getUserEmail };

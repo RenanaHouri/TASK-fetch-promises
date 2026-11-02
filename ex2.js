@@ -13,7 +13,12 @@
  * @returns {Promise} resolves after the result was printed (so whoever calls the function can wait for it)
  */
 function getPost(postId) {
-  // write your code here
+   return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+   .then(res=>res.json())
+   .then(post=>{
+    console.log(`Post title: ${post.title}`)
+   })
 }
+getPost(1)
 
 module.exports = { getPost };

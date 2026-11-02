@@ -13,7 +13,14 @@
  * @returns {Promise} resolves after the result was printed (so whoever calls the function can wait for it)
  */
 function showKeys(url) {
-  // write your code here
+   return fetch(url)
+  .then(res=>res.json())
+  .then(data =>
+  {
+    const keys=Object.keys(data )
+    console.log("Keys:",keys)
+  }
+  )
 }
 
 module.exports = { showKeys };

@@ -13,8 +13,18 @@
  * @param {number} userId
  * @returns {Promise} resolves after the result was printed (so whoever calls the function can wait for it)
  */
-function getUserFirstPost(userId) {
-  // write your code here
+async function getUserFirstPost(userId) {
+  let response=await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+  let user=await response.json()
+  return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
+  .then(res=>res.json())
+  .then(data=>
+  {
+    console.log(`First post title: ${data[0].title}`)
+  }
+  )
 }
+
+
 
 module.exports = { getUserFirstPost };
